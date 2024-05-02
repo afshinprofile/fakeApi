@@ -1,7 +1,14 @@
+import { getProductsWithBlurHash } from "@/services/productService";
 import { NextResponse } from "next/server";
-import prisma from "../../../../../prisma/client";
 
 export async function GET() {
-  const products = await prisma.product.findMany();
-  return NextResponse.json(products);
+  try {
+    const productsWithPlaceholders = await getProductsWithBlurHash();
+    return NextResponse.json(productsWithPlaceholders);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch products" },
+      { status: 500 }
+    );
+  }
 }
