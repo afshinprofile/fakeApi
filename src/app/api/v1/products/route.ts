@@ -1,8 +1,7 @@
 import { getProductsWithBlurHash } from "@/services/productService";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const req = request;
+export async function GET() {
   try {
     const productsWithPlaceholders = await getProductsWithBlurHash();
     return NextResponse.json(productsWithPlaceholders);
@@ -13,3 +12,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const dynamic = "force-dynamic";
