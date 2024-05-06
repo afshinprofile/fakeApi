@@ -17,5 +17,6 @@ model Product {
   id          Int    @id @default(autoincrement())
   name        String
   price       Int
+  img_url     String
   description String @db.Text
 }
